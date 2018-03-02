@@ -32,16 +32,16 @@ abstract class AbstractRequest
     public abstract function execute($param);
 
     /**
-     * @param                        $method
-     * @param                        $url
-     * @param \JsonSerializable|null $content
+     * @param                            $method
+     * @param                            $url
+     * @param \JsonSerializable|int|null $content
      *
      * @return mixed
      *
      * @throws \Cielo\API30\Ecommerce\Request\CieloRequestException
      * @throws \RuntimeException
      */
-    protected function sendRequest($method, $url, \JsonSerializable $content = null)
+    protected function sendRequest($method, $url, $content = null)
     {
         $headers = [
             'Accept: application/json',
