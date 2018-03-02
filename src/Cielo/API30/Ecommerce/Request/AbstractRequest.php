@@ -5,7 +5,7 @@ namespace Cielo\API30\Ecommerce\Request;
 use Cielo\API30\Merchant;
 
 /**
- * Class AbstractSaleRequest
+ * Class AbstractRequest
  *
  * @package Cielo\API30\Ecommerce\Request
  */
@@ -15,7 +15,7 @@ abstract class AbstractRequest
     private $merchant;
 
     /**
-     * AbstractSaleRequest constructor.
+     * AbstractRequest constructor.
      *
      * @param Merchant $merchant
      */
