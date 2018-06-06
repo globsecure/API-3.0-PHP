@@ -3,6 +3,7 @@
 namespace Cielo\API30\Ecommerce;
 
 use Cielo\API30\Ecommerce\Request\CreateSaleRequest;
+use Cielo\API30\Ecommerce\Request\QueryBinRequest;
 use Cielo\API30\Ecommerce\Request\QueryRecurrentPaymentRequest;
 use Cielo\API30\Ecommerce\Request\QuerySaleRequest;
 use Cielo\API30\Ecommerce\Request\TokenizeCardRequest;
@@ -241,5 +242,26 @@ class CieloEcommerce
         $changeAmountRecurrentPaymentRequest->setContent($amount);
 
         return $changeAmountRecurrentPaymentRequest->execute($recurrentPaymentId);
+    }
+
+    /**
+     * Query a Bin on Cielo by bin
+     *
+     * @param string $bin
+     *            The bin to be queried
+     *
+     * @return Sale The Bin with authorization, tid, etc. returned by Cielo.
+     *
+     * @throws \Cielo\API30\Ecommerce\Request\CieloRequestException if anything gets wrong.
+     *
+     * @see <a href=
+     *      "https://developercielo.github.io/Webservice-3.0/english.html#error-codes">Error
+     *      Codes</a>
+     */
+    public function getBin($bin)
+    {
+        $queryBinRequest = new QueryBinRequest($this->merchant, $this->environment);
+
+        return $queryBinRequest->execute($bin);
     }
 }
