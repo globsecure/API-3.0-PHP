@@ -2,7 +2,7 @@
 
 namespace Cielo\API30\Ecommerce\Request;
 
-use Cielo\API30\Ecommerce\Sale;
+use Cielo\API30\Ecommerce\Bin;
 use Cielo\API30\Environment;
 use Cielo\API30\Merchant;
 
@@ -30,15 +30,15 @@ class QueryBinRequest extends AbstractRequest
     }
 
     /**
-     * @param $paymentId
+     * @param $bin
      *
      * @return null
      * @throws \Cielo\API30\Ecommerce\Request\CieloRequestException
      * @throws \RuntimeException
      */
-    public function execute($paymentId)
+    public function execute($bin)
     {
-        $url = $this->environment->getApiQueryURL() . '1/cardBin/' . $paymentId;
+        $url = $this->environment->getApiQueryURL() . '1/cardBin/' . $bin;
 
         return $this->sendRequest('GET', $url);
     }
@@ -46,10 +46,11 @@ class QueryBinRequest extends AbstractRequest
     /**
      * @param $json
      *
-     * @return Sale
+     * @return Bin
      */
     protected function unserialize($json)
     {
-        return Sale::fromJson($json);
+        return Bin::fromJson($json);
+
     }
 }
