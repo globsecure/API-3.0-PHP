@@ -213,6 +213,38 @@ class CieloEcommerce
     }
 
     /**
+     * Change the amount of a RecurrentPayment on Cielo
+     *
+     * @param $recurrentPaymentId
+     * @param int $amount
+     * @return mixed
+     */
+    public function changeAmountRecurrentPayment($recurrentPaymentId, $amount)
+    {
+        $changeAmountRecurrentPaymentRequest = new UpdateRecurrentPaymentRequest('Amount', $this->merchant, $this->environment);
+
+        $changeAmountRecurrentPaymentRequest->setContent($amount);
+
+        return $changeAmountRecurrentPaymentRequest->execute($recurrentPaymentId);
+    }
+
+    /**
+     * Change the day of a RecurrentPayment on Cielo
+     *
+     * @param $recurrentPaymentId
+     * @param Customer $customer
+     * @return mixed
+     */
+    public function changeCustomerRecurrentPayment($recurrentPaymentId, $customer)
+    {
+        $changeCustomerRecurrentPayment = new UpdateRecurrentPaymentRequest('Customer', $this->merchant, $this->environment);
+
+        $changeCustomerRecurrentPayment->setContent($customer);
+
+        return $changeCustomerRecurrentPayment->execute($recurrentPaymentId);
+    }
+
+    /**
      * Change the day of a RecurrentPayment on Cielo
      *
      * @param $recurrentPaymentId
@@ -229,19 +261,74 @@ class CieloEcommerce
     }
 
     /**
-     * Change the amount of a RecurrentPayment on Cielo
+     * Change the end date of a RecurrentPayment on Cielo
      *
      * @param $recurrentPaymentId
-     * @param int $amount
+     * @param string $enddate
      * @return mixed
      */
-    public function changeAmountRecurrentPayment($recurrentPaymentId, $amount)
+    public function changeEndDateRecurrentPayment($recurrentPaymentId, $enddate)
     {
-        $changeAmountRecurrentPaymentRequest = new UpdateRecurrentPaymentRequest('Amount', $this->merchant, $this->environment);
+        $changeEndDateRecurrentPayment = new UpdateRecurrentPaymentRequest('EndDate', $this->merchant, $this->environment);
 
-        $changeAmountRecurrentPaymentRequest->setContent($amount);
+        $changeEndDateRecurrentPayment->setContent($enddate);
 
-        return $changeAmountRecurrentPaymentRequest->execute($recurrentPaymentId);
+        return $changeEndDateRecurrentPayment->execute($recurrentPaymentId);
+    }
+
+    /**
+     * Change the interval of a RecurrentPayment on Cielo
+     *
+     * Intervalo da recorrência.
+     *  Monthly         =   1
+     *  Bimonthly       =   2
+     *  Quarterly       =   3
+     *  SemiAnnual      =   6
+     *  Annual          =   12
+     *
+     * @param $recurrentPaymentId
+     * @param int $interval
+     * @return mixed
+     */
+    public function changeIntervalRecurrentPayment($recurrentPaymentId, $interval)
+    {
+        $changeIntervalRecurrentPayment = new UpdateRecurrentPaymentRequest('Interval', $this->merchant, $this->environment);
+
+        $changeIntervalRecurrentPayment->setContent($interval);
+
+        return $changeIntervalRecurrentPayment->execute($recurrentPaymentId);
+    }
+
+    /**
+     * Change the next payment date of a RecurrentPayment on Cielo
+     *
+     * @param $recurrentPaymentId
+     * @param string $nextPaymentDate
+     * @return mixed
+     */
+    public function changeNextPaymentDateRecurrentPayment($recurrentPaymentId, $nextPaymentDate)
+    {
+        $changeNextPaymentDateRecurrentPayment = new UpdateRecurrentPaymentRequest('NextPaymentDate', $this->merchant, $this->environment);
+
+        $changeNextPaymentDateRecurrentPayment->setContent($nextPaymentDate);
+
+        return $changeNextPaymentDateRecurrentPayment->execute($recurrentPaymentId);
+    }
+
+    /**
+     * Change the info of card payment of a RecurrentPayment on Cielo
+     *
+     * @param $recurrentPaymentId
+     * @param string $payment
+     * @return mixed
+     */
+    public function changePaymentRecurrentPayment($recurrentPaymentId, $payment)
+    {
+        $changePaymentRecurrentPayment = new UpdateRecurrentPaymentRequest('Payment', $this->merchant, $this->environment);
+
+        $changePaymentRecurrentPayment->setContent($payment);
+
+        return $changePaymentRecurrentPayment->execute($recurrentPaymentId);
     }
 
     /**
